@@ -20,15 +20,14 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
     var models: [V] = [] {
         didSet {
             
-            if !models.isEmpty {
-                var initialSnapshot = NSDiffableDataSourceSnapshot<DiffableSection, V>()
-                initialSnapshot.appendSections([.main])
-                initialSnapshot.appendItems(models)
-                dataSource.apply(initialSnapshot, animatingDifferences: true)
-            } else {
+            var initialSnapshot = NSDiffableDataSourceSnapshot<DiffableSection, V>()
+            initialSnapshot.appendSections([.main])
+            initialSnapshot.appendItems(models)
+            dataSource.apply(initialSnapshot, animatingDifferences: true)
+        
+            if models.isEmpty {
                 state = UIState(status: .noData)
             }
-            
             showEmptyViewIfNeeded()
         }
     }
@@ -86,14 +85,6 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
         
         var emptyFrame = self.tableView.bounds
         emptyFrame.origin = CGPoint.zero
-        
-        if !(self.tabBarController?.tabBar.isHidden ?? true || self.hidesBottomBarWhenPushed) {
-            emptyFrame.size.height -= self.tabBarController?.tabBar.bounds.size.height ?? 0.0
-        }
-        
-        if  !(self.navigationController?.hidesBarsWhenVerticallyCompact ?? false || self.navigationController?.isNavigationBarHidden ?? false) {
-            emptyFrame.size.height -= self.navigationController?.navigationBar.bounds.size.height ?? 0.0
-        }
         
         emptyFrame.size.height -= self.view.safeAreaInsets.bottom + self.view.safeAreaInsets.top
         
