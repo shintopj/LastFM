@@ -15,8 +15,8 @@ When the user click on the album, user will be redirected to Album details scree
 2. It loads the track from the backed api and shows the tracks below the details
 3. UICollectionView with UICollectionViewCompositionalLayout used to show the header and tracks
 
-## Need to LastFM Api key 
-
+## Need LastFM Api key 
+get an API key from [LastFM API](https://www.last.fm/api)
 ```
 Use a correct LastFM Api key in the NetworkConfig.swift file 
 
@@ -25,9 +25,9 @@ return (replace with your api key)
 
 ```
 ## Need SwiftLint
+Install from [SwiftLint](https://github.com/realm/SwiftLint)
 ```
 Used SwiftLint for quality, and need SwiftLint installed in the host machine
-[SwiftLint](https://github.com/realm/SwiftLint)
 ```
 
 
