@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseCollectionViewCell<V>: UICollectionViewCell {
-    open var item: V!
+    var item: V!
 }
 
 extension BaseCollectionViewCell: NibLoadableCollectionViewCell, ReusableCollectionViewCell { }

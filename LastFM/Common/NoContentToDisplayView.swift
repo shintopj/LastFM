@@ -15,8 +15,8 @@ class NoContentToDisplayView: UIView {
     
     var state: UIState? {
         didSet {
-            label.text = self.state?.message ?? Strings.noData
-            imageView.image = self.state?.image
+            label.text = state?.message ?? Strings.noData
+            imageView.image = state?.image
             
             if state?.status == .loading {
                 spinner.startAnimating()
@@ -29,10 +29,10 @@ class NoContentToDisplayView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .secondary
+        backgroundColor = .secondary
         
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .primaryText
+        imageView.tintColor = .secondaryText
         
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textAlignment = .center
@@ -47,20 +47,16 @@ class NoContentToDisplayView: UIView {
         
         spinner.tintColor = .primaryText
         
-        self.addSubview(stackView)
+        addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         // Auto layout
         NSLayoutConstraint.activate(
             [
-                stackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 32),
-                stackView.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor, constant: -32),
                 stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 200),
-                imageView.widthAnchor.constraint(equalToConstant: 240),
-                spinner.heightAnchor.constraint(equalToConstant: 30),
-                spinner.widthAnchor.constraint(equalToConstant: 120)
+                imageView.heightAnchor.constraint(equalToConstant: 160),
+                imageView.widthAnchor.constraint(equalToConstant: 220)
             ]
         )
     }

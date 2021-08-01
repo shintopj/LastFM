@@ -14,7 +14,7 @@ public protocol ReusableCollectionViewCell: AnyObject {
 //typealias Live = UICollectionViewCell & UICollectionReusableView
 
 extension ReusableCollectionViewCell where Self: UICollectionViewCell {
-    public static var reuseIdentifier: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }

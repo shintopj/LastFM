@@ -5,6 +5,7 @@
 //  Created by Shinto Joseph on 29/07/2021.
 //
 
+import LastFMNetwork
 import UIKit
 
 protocol AlbumListPresentationLogic: AnyObject {
@@ -22,13 +23,12 @@ final class AlbumListPresenter {
 }
 
 // MARK: - PresentationLogic
-
 extension AlbumListPresenter: AlbumListPresentationLogic {
 
     func present(albums: [Album]) {
         
         if albums.isEmpty {
-            viewController?.displayError(viewModel: "No Results found that matching your query")
+            viewController?.display(state: UIState(status: .noData, message: "No Results found that matching your query"))
         } else {
             
             let viewModel = albums.map { album in
@@ -39,6 +39,19 @@ extension AlbumListPresenter: AlbumListPresentationLogic {
     }
     
     func present(error: Error) {
-        viewController?.displayError(viewModel: error.localizedDescription)
+        
+        if let error = error as? APIError {
+            
+            switch error {
+            case .noNetwork:
+                viewController?.display(state: UIState(status: .noNetwork))
+                
+            case let .apiError(reason):
+                viewController?.display(state: UIState(status: .error, message: reason))
+                
+            default:
+                viewController?.display(state: UIState(status: .error, message: error.localizedDescription))
+            }
+        }
     }
 }

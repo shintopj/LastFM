@@ -5,8 +5,8 @@
 //  Created by Shinto Joseph on 31/07/2021.
 //
 
-import UIKit
 import SDWebImage
+import UIKit
 
 class AlbumDetailsCell: BaseCollectionViewCell<AlbumViewModel> {
 

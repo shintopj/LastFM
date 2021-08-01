@@ -6,8 +6,8 @@
 //
 
 import Combine
-import XCTest
 @testable import LastFMNetwork
+import XCTest
 
 struct Mock: Codable {
     var html: String
@@ -15,14 +15,17 @@ struct Mock: Codable {
 
 class NetworkConnectionTests: XCTestCase {
     
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+    }
+    
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func testFetch() {
         
-        let mockRequest = URLRequest(url: URL(string: "https://lastfm.freetls.fastly.net")!)
+        if let url = URL(string: "https://lastfm.freetls.fastly.net"), let mockRequest = URLRequest(url: url) {
            
         _ = MockConnection()
             .getResponse(request: mockRequest)
@@ -33,6 +36,7 @@ class NetworkConnectionTests: XCTestCase {
                     XCTAssertLessThanOrEqual(response.html, "welcome test", "object should load mock data ")
                 }
             )
+        }
     }
     
     private class MockConnection {

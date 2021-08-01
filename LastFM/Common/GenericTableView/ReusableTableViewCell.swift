@@ -12,7 +12,7 @@ public protocol ReusableTableViewCell: AnyObject {
 }
 
 extension ReusableTableViewCell where Self: UITableViewCell {
-    public static var reuseIdentifier: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }

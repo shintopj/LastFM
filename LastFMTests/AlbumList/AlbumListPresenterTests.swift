@@ -44,7 +44,7 @@ class AlbumListPresenterTests: XCTestCase {
             displayCalled = true
         }
 
-        func displayError(viewModel: String) {
+        func display(state: UIState) {
             displayErrorCalled = true
         }
     }
@@ -67,7 +67,7 @@ class AlbumListPresenterTests: XCTestCase {
     func testDisplayError() {
         
         // When
-        viewController.displayError(viewModel: "unable to retrive search")
+        viewController.display(state: UIState(status: .error, message: "unable to retrive search"))
         
         // Then
         XCTAssertTrue(viewController.displayErrorCalled, "viewController.displayError(viewModel:) should ask the view controller to display the result")

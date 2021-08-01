@@ -5,13 +5,12 @@
 //  Created by Shinto Joseph on 01/08/2021.
 //
 
-import XCTest
 @testable import LastFM
+import XCTest
 
 class AlbumListViewControllerTests: XCTestCase {
 
     // MARK: - Subject under test
-
     var sut: AlbumListViewController!
     var interactor: AlbumListBusinessLogicSpy!
     var router: AlbumListRouterSpy!
@@ -64,7 +63,6 @@ class AlbumListViewControllerTests: XCTestCase {
             routeCalled = true
         }
         
-
         let dataStore: AlbumListDataStore? = nil
     }
 

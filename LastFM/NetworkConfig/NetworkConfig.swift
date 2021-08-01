@@ -43,9 +43,10 @@ enum NetworkConfig {
     static var apiKey: String {
         switch environment {
         case .production:
-            return <#replace with your api key#>
+            return "e9c2c92725801ca7c962d966ff188f92"
         case .development:
-            return <#replace with your api key#>
+            return "e9c2c92725801ca7c962d966ff188f92"
         }
     }
+//    <#replace with your api key#>
 }

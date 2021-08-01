@@ -21,6 +21,7 @@ final class AlbumListWorker: AlbumListWorkerProtocol {
         cancellable = AlbumNetworkConnection(networkController: NetworkController())
             .searchAlbum(query: query)
             .mapError { error -> Error in
+                completion(.failure(error))
                 return error
             }
             .sink(

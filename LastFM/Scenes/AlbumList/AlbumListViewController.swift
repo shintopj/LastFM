@@ -10,17 +10,17 @@ import UIKit
 
 protocol AlbumListDisplayLogic: AnyObject {
     func display(viewModel: [AlbumViewModel])
-    func displayError(viewModel: String)
+    func display(state: UIState)
 }
 
 final class AlbumListViewController: DiffableTableViewController<AlbumListCell, AlbumViewModel> {
-
+    
     var interactor: AlbumListBusinessLogic!
     var router: (AlbumListRoutingLogic & AlbumListDataPassing)!
-
+    
     // Search Handling
     private var searchController: UISearchController?
-    var resultsTableController = DiffableTableViewController<AlbumListCell, AlbumViewModel>()
+    lazy var resultsTableController = DiffableTableViewController<AlbumListCell, AlbumViewModel>()
     
     //holds all the cancellables
     var cancellable = [AnyCancellable]()
@@ -28,14 +28,17 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
         interactor.fetch(query: "love")
+        #endif
         
         setUpSearchBarAndTableView()
         startCombineSearchDebounce()
         
-        resultsTableController.tableView.delegate = self
+        state = UIState(status: .noError, message: "Please search for your favorite Albums", image: .loading)
     }
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = dataSource?.itemIdentifier(for: indexPath) {
             router.routeToNext(item: item)
         }
@@ -47,6 +50,7 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
         
         // Monitor when the search controller is presented and dismissed.
         searchController.delegate = self
+        resultsTableController.tableView.delegate = self
         
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
@@ -54,7 +58,7 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchBar.setImage(UIImage.search, for: .search, state: .normal)
         searchController.searchBar.setImage(UIImage.clear, for: .clear, state: .normal)
-    
+        
         searchController.searchBar.returnKeyType = .search
         searchController.searchBar.searchTextField.font = UIFont.preferredFont(forTextStyle: .subheadline)
         
@@ -84,6 +88,8 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
             .sink(receiveValue: { [weak self] value in
                 
                 if value.lengthOfBytes(using: .utf8) > 2 {
+                    self?.state = UIState(status: .loading)
+                    self?.resultsTableController.state = UIState(status: .loading)
                     self?.interactor.fetch(query: value)
                 }
             }
@@ -112,11 +118,15 @@ extension AlbumListViewController: UISearchBarDelegate, UISearchResultsUpdating,
     func presentSearchController(_ searchController: UISearchController) {
         searchController.showsSearchResultsController = true
     }
-   
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        resultsTableController.models = models
+    }
+    
     func willDismissSearchController(_ searchController: UISearchController) {
         updateSearchAfterDismiss(searchController)
     }
-
+    
     func updateSearchAfterDismiss(_ searchController: UISearchController) {
         let token = searchController.searchBar.searchTextField.tokens
         let searchText = searchController.searchBar.searchTextField.text
@@ -131,17 +141,30 @@ extension AlbumListViewController: UISearchBarDelegate, UISearchResultsUpdating,
 
 // MARK: - DisplayLogic
 extension AlbumListViewController: AlbumListDisplayLogic {
-   
+    
     func display(viewModel: [AlbumViewModel]) {
         models = viewModel
-        resultsTableController.models = viewModel
+        
+        DispatchQueue.main.async { [weak self] in
+            if self?.searchController?.isActive ?? false {
+                self?.resultsTableController.models = viewModel
+            }
+        }
     }
-
-    func displayError(viewModel: String) {
-        models.removeAll()
-        state.update(status: .error, message: viewModel)
-        resultsTableController.models.removeAll()
-        resultsTableController.state.update(status: .error, message: viewModel)
+    
+    func display(state: UIState) {
+        
+        if !models.isEmpty {
+            models.removeAll()
+        }
+        self.state = state
+        
+        DispatchQueue.main.async { [weak self] in
+            if self?.searchController?.isActive ?? false {
+                self?.resultsTableController.models.removeAll()
+                self?.resultsTableController.state = state
+            }
+        }
     }
 }
 
