@@ -30,16 +30,4 @@ class AlbumListWorkerTests: XCTestCase {
     func setupAlbumListWorker() {
         sut = AlbumListWorker()
     }
-
-    // MARK: - Test doubles
-
-    // MARK: - Tests
-
-    func testFetch() {
-        // Given
-
-        // When
-
-        // Then
-    }
 }

@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - Image
 struct Image: Codable {
-    var text: String?
-    var size: String?
+    let text: String?
+    let size: String?
     
     enum CodingKeys: String, CodingKey {
         case text = "#text"

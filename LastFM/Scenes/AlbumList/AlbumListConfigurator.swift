@@ -12,7 +12,7 @@ struct AlbumListConfigurator {
         let viewController: AlbumListViewController = .viewController()
         let presenter = AlbumListPresenter(viewController: viewController)
         let worker = AlbumListWorker()
-        let interactor = AlbumListInteractor(presenter: presenter, worker: worker/*, name: name*/)
+        let interactor = AlbumListInteractor(presenter: presenter, worker: worker)
         let router = AlbumListRouter(viewController: viewController, dataStore: interactor)
         viewController.interactor = interactor
         viewController.router = router

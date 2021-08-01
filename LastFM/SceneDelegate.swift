@@ -9,15 +9,16 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var rootRouter: RootRouter!
+    var rootRouter: RootRouter?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else {
+            return
+        }
         
         rootRouter = RootRouter(scene: windowScene)
         rootRouter?.initalizeApp()
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,7 +48,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

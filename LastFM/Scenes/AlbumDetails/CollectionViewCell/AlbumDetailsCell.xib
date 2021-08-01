@@ -23,6 +23,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OqW-pi-nyv">
                                 <rect key="frame" x="0.0" y="5" width="120" height="100"/>
+                                <accessibility key="accessibilityConfiguration" identifier="album-detail-icon"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="naJ-zT-pS9"/>
                                     <constraint firstAttribute="height" constant="100" id="qk5-yt-aSH"/>
@@ -33,11 +34,13 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6J-do-e6B">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="17"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="album-detail-title"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bx-aO-Q49">
                                         <rect key="frame" x="0.0" y="25" width="152" height="17"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="album-detail-description"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>

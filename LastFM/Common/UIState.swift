@@ -11,23 +11,12 @@ enum Status {
     case error, noError, noNetwork, noData, loading
 }
 
-class UIState {
+struct UIState {
     var status: Status = .loading
     var message: String = Strings.loading
     var image: UIImage? = UIImage.loading
     
-    init(status: Status, message: String = Strings.loading) {
-        self.status = status
-        self.message = message
-    }
-    
-    init(status: Status, message: String, image: UIImage) {
-        self.status = status
-        self.message = message
-        self.image = image
-    }
-    
-    func update(status: Status, message: String? = nil) {
+    init(status: Status, message: String? = nil) {
         self.status = status
         if status == .loading {
             self.image = UIImage.loading
@@ -42,5 +31,11 @@ class UIState {
             self.image = UIImage.noData
             self.message = message ?? Strings.noData
         }
+    }
+    
+    init(status: Status, message: String, image: UIImage?) {
+        self.status = status
+        self.message = message
+        self.image = image
     }
 }

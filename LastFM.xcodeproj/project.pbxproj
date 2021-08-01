@@ -67,6 +67,8 @@
 		79AFE2CC26B69067000B1ECD /* AlbumListWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2C826B69067000B1ECD /* AlbumListWorkerTests.swift */; };
 		79AFE2CD26B69067000B1ECD /* AlbumListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2C926B69067000B1ECD /* AlbumListPresenterTests.swift */; };
 		79AFE2CF26B6945A000B1ECD /* Album+testObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2CE26B6945A000B1ECD /* Album+testObjects.swift */; };
+		79AFE2D926B70F30000B1ECD /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2D826B70F30000B1ECD /* TrackViewModel.swift */; };
+		79AFE2DB26B70F55000B1ECD /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2DA26B70F55000B1ECD /* AlbumViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,8 @@
 		79AFE2C826B69067000B1ECD /* AlbumListWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListWorkerTests.swift; sourceTree = "<group>"; };
 		79AFE2C926B69067000B1ECD /* AlbumListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListPresenterTests.swift; sourceTree = "<group>"; };
 		79AFE2CE26B6945A000B1ECD /* Album+testObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+testObjects.swift"; sourceTree = "<group>"; };
+		79AFE2D826B70F30000B1ECD /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		79AFE2DA26B70F55000B1ECD /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +222,7 @@
 		79AFE1AF26B2E890000B1ECD /* LastFM */ = {
 			isa = PBXGroup;
 			children = (
-				79AFE23126B43D91000B1ECD /* NetworkConfig */,
+				79AFE2DC26B70FA3000B1ECD /* Network */,
 				79AFE20226B32131000B1ECD /* Common */,
 				79AFE22726B3E388000B1ECD /* Models */,
 				79AFE1E026B2EC75000B1ECD /* Scenes */,
@@ -255,7 +259,6 @@
 		79AFE1E026B2EC75000B1ECD /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				79AFE23626B44339000B1ECD /* AblumNetworkConnection */,
 				79AFE1F026B2ED05000B1ECD /* AlbumDetails */,
 				79AFE1E126B2ECB6000B1ECD /* AlbumList */,
 			);
@@ -341,9 +344,11 @@
 			children = (
 				79AFE22826B3E39F000B1ECD /* AlbumSearch.swift */,
 				79AFE23926B44447000B1ECD /* Album.swift */,
+				79AFE2DA26B70F55000B1ECD /* AlbumViewModel.swift */,
 				79AFE23D26B444F5000B1ECD /* Image.swift */,
 				79AFE23B26B444C1000B1ECD /* AlbumDetails.swift */,
 				79AFE2B426B54527000B1ECD /* Track.swift */,
+				79AFE2D826B70F30000B1ECD /* TrackViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +419,15 @@
 				79AFE2CE26B6945A000B1ECD /* Album+testObjects.swift */,
 			);
 			path = AlbumList;
+			sourceTree = "<group>";
+		};
+		79AFE2DC26B70FA3000B1ECD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				79AFE23126B43D91000B1ECD /* NetworkConfig */,
+				79AFE23626B44339000B1ECD /* AblumNetworkConnection */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,6 +611,7 @@
 				79AFE29726B5155E000B1ECD /* AlbumDetailsRouter.swift in Sources */,
 				79AFE1EE26B2ECFC000B1ECD /* AlbumListInteractor.swift in Sources */,
 				79AFE29626B5155E000B1ECD /* AlbumDetailsWorker.swift in Sources */,
+				79AFE2DB26B70F55000B1ECD /* AlbumViewModel.swift in Sources */,
 				79AFE20026B2ED71000B1ECD /* RootRouter.swift in Sources */,
 				79AFE28B26B5141E000B1ECD /* Routing.swift in Sources */,
 				79AFE22926B3E39F000B1ECD /* AlbumSearch.swift in Sources */,
@@ -607,6 +622,7 @@
 				79AFE23A26B44447000B1ECD /* Album.swift in Sources */,
 				79AFE23326B43DAC000B1ECD /* NetworkConfig.swift in Sources */,
 				79AFE21526B321F5000B1ECD /* BaseTableViewCell.swift in Sources */,
+				79AFE2D926B70F30000B1ECD /* TrackViewModel.swift in Sources */,
 				79AFE1EA26B2ECFC000B1ECD /* AlbumListWorker.swift in Sources */,
 				79AFE21B26B3225A000B1ECD /* Strings.swift in Sources */,
 				79AFE2B126B53EC4000B1ECD /* SectionHeaderReusableView.swift in Sources */,

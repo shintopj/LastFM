@@ -19,20 +19,23 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
     
     var models: [V] = [] {
         didSet {
-            var initialSnapshot = NSDiffableDataSourceSnapshot<DiffableSection, V>()
-            initialSnapshot.appendSections([.main])
-            initialSnapshot.appendItems(models)
-            if models.isEmpty {
-                self.state.update(status: .noData)
+            
+            if !models.isEmpty {
+                var initialSnapshot = NSDiffableDataSourceSnapshot<DiffableSection, V>()
+                initialSnapshot.appendSections([.main])
+                initialSnapshot.appendItems(models)
+                dataSource.apply(initialSnapshot, animatingDifferences: true)
+            } else {
+                state = UIState(status: .noData)
             }
-            self.dataSource.apply(initialSnapshot, animatingDifferences: true)
-            self.showEmptyViewIfNeeded()
+            
+            showEmptyViewIfNeeded()
         }
     }
     
-    var state = UIState(status: .loading) {
+    var state: UIState? {
         didSet {
-            self.showEmptyViewIfNeeded()
+            showEmptyViewIfNeeded()
         }
     }
     
@@ -56,12 +59,12 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
             return cell
         }
         
-        self.dataSource.defaultRowAnimation = .fade
+        dataSource.defaultRowAnimation = .fade
         tableView.dataSource = dataSource
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.showEmptyViewIfNeeded()
+        showEmptyViewIfNeeded()
     }
     
     func showEmptyViewIfNeeded() {
@@ -69,12 +72,12 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
         let shouldShow = dataSource.snapshot().itemIdentifiers.isEmpty
         
         if shouldShow {
-            DispatchQueue.main.async {
-                self.tableView.tableFooterView = self.getEmptyView()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.tableFooterView = self?.getEmptyView()
             }
         } else {
-            DispatchQueue.main.async {
-                self.tableView.tableFooterView = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.tableFooterView = nil
             }
         }
     }
@@ -101,6 +104,6 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
         }
         
         emptyView?.state = state
-        return emptyView!
+        return emptyView ?? UIView()
     }
 }

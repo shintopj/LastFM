@@ -12,7 +12,7 @@ public protocol NibLoadableCollectionViewCell: AnyObject {
 }
 
 extension NibLoadableCollectionViewCell where Self: UICollectionViewCell {
-    public static var nibName: String {
+    static var nibName: String {
         return String(describing: self)
     }
 }

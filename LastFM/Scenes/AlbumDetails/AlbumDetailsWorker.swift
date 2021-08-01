@@ -22,6 +22,7 @@ final class AlbumDetailsWorker: AlbumDetailsWorkerProtocol {
         cancellable = AlbumNetworkConnection(networkController: NetworkController())
             .getAlbumDetails(album: album, artist: artist)
             .mapError { error -> Error in
+                completion(.failure(error))
                 return error
             }
             .sink(

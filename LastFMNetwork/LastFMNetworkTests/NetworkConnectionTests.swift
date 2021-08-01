@@ -6,8 +6,8 @@
 //
 
 import Combine
-import XCTest
 @testable import LastFMNetwork
+import XCTest
 
 struct Mock: Codable {
     var html: String
@@ -15,24 +15,30 @@ struct Mock: Codable {
 
 class NetworkConnectionTests: XCTestCase {
     
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+    }
+    
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func testFetch() {
         
-        let mockRequest = URLRequest(url: URL(string: "https://lastfm.freetls.fastly.net")!)
-           
-        _ = MockConnection()
-            .getResponse(request: mockRequest)
-            .sink(
-                receiveCompletion: { _ in
-                },
-                receiveValue: { response in
-                    XCTAssertLessThanOrEqual(response.html, "welcome test", "object should load mock data ")
-                }
-            )
+        if let url = URL(string: "https://lastfm.freetls.fastly.net") {
+            
+            let mockRequest = URLRequest(url: url)
+            
+            MockConnection()
+                .getResponse(request: mockRequest)
+                .sink(
+                    receiveCompletion: { _ in
+                    },
+                    receiveValue: { response in
+                        XCTAssertLessThanOrEqual(response.html, "welcome test", "object should load mock data ")
+                    }
+                )
+        }
     }
     
     private class MockConnection {
@@ -53,6 +59,7 @@ class NetworkConnectionTests: XCTestCase {
             session = URLSession(configuration: config)
         }
         
+        @discardableResult
         func getResponse(request: URLRequest) -> AnyPublisher<Mock, Error> {
             return NetworkController(session: session)
                 .get(request: request)

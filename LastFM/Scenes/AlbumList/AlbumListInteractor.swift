@@ -13,12 +13,12 @@ protocol AlbumListBusinessLogic: AnyObject {
 }
 
 protocol AlbumListDataStore: AnyObject {
-    var albums: [Album]? { get }
+    var albums: [Album] { get }
 }
 
 final class AlbumListInteractor: AlbumListDataStore {
     
-    var albums: [Album]?
+    var albums = [Album]()
     
     private let presenter: AlbumListPresentationLogic
     private let worker: AlbumListWorkerProtocol

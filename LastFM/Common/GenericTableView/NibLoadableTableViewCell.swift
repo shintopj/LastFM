@@ -12,7 +12,7 @@ public protocol NibLoadableTableViewCell: AnyObject {
 }
 
 extension NibLoadableTableViewCell where Self: UITableViewCell {
-    public static var nibName: String {
+    static var nibName: String {
         return String(describing: self)
     }
 }
