@@ -29,14 +29,10 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if DEBUG
-        interactor.fetch(query: "love")
-        #endif
-        
         setUpSearchBarAndTableView()
         startCombineSearchDebounce()
         
-        state = UIState(status: .noError, message: "Please search for your favorite Albums", image: .loading)
+        state = UIState(status: .noError, message: Strings.search, image: .loading)
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = dataSource?.itemIdentifier(for: indexPath) {
@@ -83,9 +79,9 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
     func startCombineSearchDebounce() {
         let publisher = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController?.searchBar.searchTextField)
         
-        publisher.map { ($0.object as! UISearchTextField).text ?? "" }
+        publisher.map { ($0.object as? UISearchTextField)?.text ?? "" }
             .debounce(for: .milliseconds(500), scheduler: RunLoop.current)
-            .sink(receiveValue: { [weak self] value in
+            .sink { [weak self] value in
                 
                 if value.lengthOfBytes(using: .utf8) > 2 {
                     self?.state = UIState(status: .loading)
@@ -93,7 +89,7 @@ final class AlbumListViewController: DiffableTableViewController<AlbumListCell, 
                     self?.interactor.fetch(query: value)
                 }
             }
-            )
+            
             .store(in: &cancellable)
     }    
 }

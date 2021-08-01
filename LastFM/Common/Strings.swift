@@ -14,6 +14,8 @@ enum Strings {
     static let applicationError = "application error"
     static let noData = "no data"
     static let unAuthorized = "un authorized"
-    static let noSearchResult = "no search results"
+    static let noSearchResult = "No search results found that matches your query"
+    static let search = "Please search for your favorite Albums"
+    static let tracks = "Tracks"
     static let empty = "-"
 }

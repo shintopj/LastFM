@@ -25,17 +25,19 @@ class NetworkConnectionTests: XCTestCase {
     
     func testFetch() {
         
-        if let url = URL(string: "https://lastfm.freetls.fastly.net"), let mockRequest = URLRequest(url: url) {
-           
-        _ = MockConnection()
-            .getResponse(request: mockRequest)
-            .sink(
-                receiveCompletion: { _ in
-                },
-                receiveValue: { response in
-                    XCTAssertLessThanOrEqual(response.html, "welcome test", "object should load mock data ")
-                }
-            )
+        if let url = URL(string: "https://lastfm.freetls.fastly.net") {
+            
+            let mockRequest = URLRequest(url: url)
+            
+            MockConnection()
+                .getResponse(request: mockRequest)
+                .sink(
+                    receiveCompletion: { _ in
+                    },
+                    receiveValue: { response in
+                        XCTAssertLessThanOrEqual(response.html, "welcome test", "object should load mock data ")
+                    }
+                )
         }
     }
     
@@ -57,6 +59,7 @@ class NetworkConnectionTests: XCTestCase {
             session = URLSession(configuration: config)
         }
         
+        @discardableResult
         func getResponse(request: URLRequest) -> AnyPublisher<Mock, Error> {
             return NetworkController(session: session)
                 .get(request: request)

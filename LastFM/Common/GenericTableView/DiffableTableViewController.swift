@@ -72,12 +72,12 @@ class DiffableTableViewController<T: BaseTableViewCell<V>, V>: UITableViewContro
         let shouldShow = dataSource.snapshot().itemIdentifiers.isEmpty
         
         if shouldShow {
-            DispatchQueue.main.async { [unowned self] in
-                self.tableView.tableFooterView = self.getEmptyView()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.tableFooterView = self?.getEmptyView()
             }
         } else {
-            DispatchQueue.main.async { [unowned self] in
-                self.tableView.tableFooterView = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.tableFooterView = nil
             }
         }
     }

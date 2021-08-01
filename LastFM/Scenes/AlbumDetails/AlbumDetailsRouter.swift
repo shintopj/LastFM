@@ -27,7 +27,6 @@ final class AlbumDetailsRouter: AlbumDetailsDataPassing {
 }
 
 // MARK: - RoutingLogic
-
 extension AlbumDetailsRouter: AlbumDetailsRoutingLogic {
 
     func routeToNext() {

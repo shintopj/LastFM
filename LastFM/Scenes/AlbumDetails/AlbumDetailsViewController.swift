@@ -148,7 +148,7 @@ extension AlbumDetailsViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: sectionHeaderId, for: indexPath) as? SectionHeaderReusableView {
-            header.item = "Tracks"
+            header.item = Strings.tracks
             return header
         }
         

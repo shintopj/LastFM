@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - Track
 struct Track: Codable {
+    let name: String
     let artist: Artist?
     let attr: Attr?
     let duration: Int?
     let url: String?
-    let name: String?
     let streamable: Streamable?
     
     enum CodingKeys: String, CodingKey {
@@ -28,8 +28,8 @@ struct Track: Codable {
 
 // MARK: - Artist
 struct Artist: Codable {
+    let name: String
     let url: String?
-    let name: String?
     let mbid: String?
     
     enum CodingKeys: String, CodingKey {
@@ -47,22 +47,5 @@ struct Streamable: Codable {
     enum CodingKeys: String, CodingKey {
         case fulltrack
         case text = "#text"
-    }
-}
-
-struct TrackViewModel {
-    let title: String
-    let details: String
-    
-    init(item: Track) {
-        title = item.name ?? Strings.empty
-        details = "Artist: \(item.artist?.name ?? Strings.empty), length: \(TrackViewModel.getDuration(item: item.duration))"
-    }
-    
-    private static func getDuration(item: Int?) -> String {
-        let minutes = (item ?? 0) / 60
-        let seconds = (item ?? 0) % 60
-        
-        return "\(minutes):\(seconds)"
     }
 }

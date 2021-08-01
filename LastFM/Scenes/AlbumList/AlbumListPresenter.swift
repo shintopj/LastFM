@@ -28,7 +28,7 @@ extension AlbumListPresenter: AlbumListPresentationLogic {
     func present(albums: [Album]) {
         
         if albums.isEmpty {
-            viewController?.display(state: UIState(status: .noData, message: "No Results found that matching your query"))
+            viewController?.display(state: UIState(status: .noData, message: Strings.noSearchResult))
         } else {
             
             let viewModel = albums.map { album in
