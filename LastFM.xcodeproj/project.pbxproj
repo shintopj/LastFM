@@ -42,7 +42,6 @@
 		79AFE27E26B47437000B1ECD /* LastFMNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AFE27D26B47437000B1ECD /* LastFMNetwork.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		79AFE28026B47CE4000B1ECD /* LastFMNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79AFE27D26B47437000B1ECD /* LastFMNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		79AFE28826B513C6000B1ECD /* Album.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79AFE28726B513C6000B1ECD /* Album.storyboard */; };
-		79AFE28B26B5141E000B1ECD /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE28A26B5141E000B1ECD /* Routing.swift */; };
 		79AFE28D26B5144E000B1ECD /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE28C26B5144E000B1ECD /* Storyboards.swift */; };
 		79AFE29526B5155E000B1ECD /* AlbumDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE28E26B5155E000B1ECD /* AlbumDetailsPresenter.swift */; };
 		79AFE29626B5155E000B1ECD /* AlbumDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE28F26B5155E000B1ECD /* AlbumDetailsWorker.swift */; };
@@ -69,6 +68,7 @@
 		79AFE2CF26B6945A000B1ECD /* Album+testObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2CE26B6945A000B1ECD /* Album+testObjects.swift */; };
 		79AFE2D926B70F30000B1ECD /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2D826B70F30000B1ECD /* TrackViewModel.swift */; };
 		79AFE2DB26B70F55000B1ECD /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2DA26B70F55000B1ECD /* AlbumViewModel.swift */; };
+		79AFE2DE26B72D49000B1ECD /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFE2DD26B72D49000B1ECD /* Routing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,7 +143,6 @@
 		79AFE23D26B444F5000B1ECD /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		79AFE27D26B47437000B1ECD /* LastFMNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LastFMNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79AFE28726B513C6000B1ECD /* Album.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Album.storyboard; sourceTree = "<group>"; };
-		79AFE28A26B5141E000B1ECD /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routing.swift; path = ../../../../../../Downloads/Routing.swift; sourceTree = "<group>"; };
 		79AFE28C26B5144E000B1ECD /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		79AFE28E26B5155E000B1ECD /* AlbumDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsPresenter.swift; sourceTree = "<group>"; };
 		79AFE28F26B5155E000B1ECD /* AlbumDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsWorker.swift; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		79AFE2CE26B6945A000B1ECD /* Album+testObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+testObjects.swift"; sourceTree = "<group>"; };
 		79AFE2D826B70F30000B1ECD /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		79AFE2DA26B70F55000B1ECD /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
+		79AFE2DD26B72D49000B1ECD /* Routing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,7 +381,7 @@
 		79AFE28926B51413000B1ECD /* RoutingHelper */ = {
 			isa = PBXGroup;
 			children = (
-				79AFE28A26B5141E000B1ECD /* Routing.swift */,
+				79AFE2DD26B72D49000B1ECD /* Routing.swift */,
 			);
 			path = RoutingHelper;
 			sourceTree = "<group>";
@@ -598,6 +598,7 @@
 				79AFE1EF26B2ECFC000B1ECD /* AlbumListConfigurator.swift in Sources */,
 				79AFE1ED26B2ECFC000B1ECD /* AlbumListViewController.swift in Sources */,
 				79AFE29926B5155E000B1ECD /* AlbumDetailsViewController.swift in Sources */,
+				79AFE2DE26B72D49000B1ECD /* Routing.swift in Sources */,
 				79AFE29A26B5155E000B1ECD /* AlbumDetailsInteractor.swift in Sources */,
 				79AFE2AE26B5345A000B1ECD /* TrackListCell.swift in Sources */,
 				79AFE22026B3C82C000B1ECD /* AlbumListCell.swift in Sources */,
@@ -613,7 +614,6 @@
 				79AFE29626B5155E000B1ECD /* AlbumDetailsWorker.swift in Sources */,
 				79AFE2DB26B70F55000B1ECD /* AlbumViewModel.swift in Sources */,
 				79AFE20026B2ED71000B1ECD /* RootRouter.swift in Sources */,
-				79AFE28B26B5141E000B1ECD /* Routing.swift in Sources */,
 				79AFE22926B3E39F000B1ECD /* AlbumSearch.swift in Sources */,
 				79AFE2AA26B53435000B1ECD /* AlbumDetailsCell.swift in Sources */,
 				79AFE20B26B32176000B1ECD /* UIColor+Extensions.swift in Sources */,
