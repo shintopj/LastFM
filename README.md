@@ -25,9 +25,9 @@ return (replace with your api key)
 
 ```
 ## Need SwiftLint
+Install from [SwiftLint](https://github.com/realm/SwiftLint)
 ```
 Used SwiftLint for quality, and need SwiftLint installed in the host machine
-[SwiftLint](https://github.com/realm/SwiftLint)
 ```
 
 
